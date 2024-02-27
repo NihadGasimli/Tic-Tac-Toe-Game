@@ -1,4 +1,4 @@
-const allBoxs = document.querySelectorAll(".b");
+var allBoxs = document.querySelectorAll(".box");
 const turnText = document.querySelector(".turnText");
 const newGameBtn = document.querySelector(".newGameBtn");
 var arrayOfX = [];
@@ -189,13 +189,11 @@ function hoverBox() {
     for (let i = 1; i <= allBoxs.length; i++) {
         allBoxs[i - 1].onmouseenter = function () {
             if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
-                allBoxs[i - 1].style.backgroundColor = "#3C4250";
                 allBoxs[i - 1].innerHTML = z[z.length - 1];
             }
         }
 
         allBoxs[i - 1].onmouseleave = function () {
-            allBoxs[i - 1].style.backgroundColor = "#78BEC5";
             if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
                 allBoxs[i - 1].innerHTML = "";
             }
@@ -228,10 +226,12 @@ function checkWin(playerArray) {
             if (playerArray === arrayOfX) {
                 document.querySelector(".popUp").style.display = "flex"
                 document.querySelector(".popUpText").innerHTML = "X Winner!"
+                allBoxs = ""
             }
             else if (playerArray === arrayOfO) {
                 document.querySelector(".popUp").style.display = "flex"
                 document.querySelector(".popUpText").innerHTML = "O Winner!"
+                allBoxs = ""
             }
             drawGame = true;
             return;
@@ -259,6 +259,7 @@ newGameBtn.addEventListener("click", function () {
     document.querySelector(".popUp").classList.add("popUpClose");
     setTimeout(function () {
         document.querySelector(".popUp").style.display = "none";
+        allBoxs = document.querySelectorAll(".box");
         document.querySelector(".popUp").classList.remove("popUpClose");
         restart();
     }, 800);
