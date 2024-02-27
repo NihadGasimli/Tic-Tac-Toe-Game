@@ -1,5 +1,6 @@
-const allBoxs = document.querySelectorAll(".box");
+const allBoxs = document.querySelectorAll(".b");
 const turnText = document.querySelector(".turnText");
+const newGameBtn = document.querySelector(".newGameBtn");
 var arrayOfX = [];
 var arrayOfO = [];
 var turnCounter = 0;
@@ -14,7 +15,7 @@ function click(turn) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
-                            arrayOfO.push(1)
+                            arrayOfO.push(1);
                         }
                         else {
                             turn = "X";
@@ -183,6 +184,27 @@ function click(turn) {
 
 click(turn);
 
+function hoverBox() {
+    var z = turnText.innerHTML;
+    for (let i = 1; i <= allBoxs.length; i++) {
+        allBoxs[i - 1].onmouseenter = function () {
+            if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
+                allBoxs[i - 1].style.backgroundColor = "#3C4250";
+                allBoxs[i - 1].innerHTML = z[z.length - 1];
+            }
+        }
+
+        allBoxs[i - 1].onmouseleave = function () {
+            allBoxs[i - 1].style.backgroundColor = "#78BEC5";
+            if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
+                allBoxs[i - 1].innerHTML = "";
+            }
+
+        }
+    }
+};
+
+setInterval(hoverBox, 1);
 
 function checkWin(playerArray) {
     var drawGame = false;
@@ -204,20 +226,21 @@ function checkWin(playerArray) {
 
         if (isWinner) {
             if (playerArray === arrayOfX) {
-                alert("Winner player X");
+                document.querySelector(".popUp").style.display = "flex"
+                document.querySelector(".popUpText").innerHTML = "X Winner!"
             }
             else if (playerArray === arrayOfO) {
-                alert("Winner player O")
+                document.querySelector(".popUp").style.display = "flex"
+                document.querySelector(".popUpText").innerHTML = "O Winner!"
             }
-            restart();
             drawGame = true;
             return;
         }
     }
 
     if (turnCounter === 9 && !drawGame) {
-        alert("Draw");
-        restart();
+        document.querySelector(".popUp").style.display = "flex"
+        document.querySelector(".popUpText").innerHTML = "You drew the game!"
         return;
     }
 }
@@ -231,3 +254,12 @@ function restart() {
         allBoxs[i].innerHTML = "";
     }
 }
+
+newGameBtn.addEventListener("click", function () {
+    document.querySelector(".popUp").classList.add("popUpClose");
+    setTimeout(function () {
+        document.querySelector(".popUp").style.display = "none";
+        document.querySelector(".popUp").classList.remove("popUpClose");
+        restart();
+    }, 800);
+})
