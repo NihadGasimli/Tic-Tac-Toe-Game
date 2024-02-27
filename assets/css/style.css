@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+}
+.turnText{
+    margin-bottom: 100px;
+}
+
+.firstRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.secondRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.thirdRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.firstBox,
+.fourBox,
+.sevenBox {
+    border-right: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+.secondBox,
+.fiveBox,
+.eightBox {
+    border-bottom: 5px solid black;
+}
+
+.thirdBox,
+.sixBox,
+.nineBox {
+    border-left: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+.sevenBox,
+.eightBox,
+.nineBox {
+    border-bottom: 0px;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: 100;
+}
