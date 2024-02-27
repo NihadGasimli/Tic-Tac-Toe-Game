@@ -183,7 +183,9 @@ function click(turn) {
 
 click(turn);
 
+
 function checkWin(playerArray) {
+    var drawGame = false;
     const winCombinations = [
         [1, 2, 3], [1, 4, 7], [2, 5, 8], [3, 6, 9],
         [7, 8, 9], [9, 6, 3], [1, 5, 9], [3, 5, 7],
@@ -199,6 +201,7 @@ function checkWin(playerArray) {
                 break;
             }
         }
+
         if (isWinner) {
             if (playerArray === arrayOfX) {
                 alert("Winner player X");
@@ -206,13 +209,16 @@ function checkWin(playerArray) {
             else if (playerArray === arrayOfO) {
                 alert("Winner player O")
             }
-            else if (turnCounter === 9) {
-                alert("Draw!");
-                restart()
-            }
             restart();
+            drawGame = true;
             return;
         }
+    }
+
+    if (turnCounter === 9 && !drawGame) {
+        alert("Draw");
+        restart();
+        return;
     }
 }
 
