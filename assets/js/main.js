@@ -231,6 +231,7 @@ function checkWin(playerArray) {
         }
 
         if (isWinner) {
+            document.querySelector("#game").style.cursor = "default";
             if (playerArray === arrayOfX && !popUpActivate) {
                 document.querySelector(".popUp").style.display = "flex"
                 document.querySelector(".popUpText").innerHTML = "X Winner!";
@@ -255,6 +256,7 @@ function checkWin(playerArray) {
 }
 
 function restart() {
+    document.querySelector("#game").style.cursor = "pointer";
     allowClicked = true;
     turnText.innerHTML = "Turn of X";
     arrayOfX = [];
@@ -266,7 +268,6 @@ function restart() {
 }
 
 newGameBtn.addEventListener("click", function () {
-    allowClicked = true;
     document.querySelector(".popUp").classList.add("popUpClose");
     setTimeout(function () {
         popUpActivate = false;
