@@ -5,14 +5,13 @@ var arrayOfX = [];
 var arrayOfO = [];
 var turnCounter = 0;
 var turn;
-var popUpActivate = false;
 
 function click(turn) {
     for (let i = 1; i <= allBoxs.length; i++) {
         allBoxs[i - 1].onclick = function () {
             switch (i) {
                 case 1:
-                    if (!arrayOfX.includes(1) && !arrayOfO.includes(1) && !popUpActivate) {
+                    if (!arrayOfX.includes(1) && !arrayOfO.includes(1)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -30,7 +29,7 @@ function click(turn) {
                     }
                     break;
                 case 2:
-                    if (!arrayOfX.includes(2) && !arrayOfO.includes(2) && !popUpActivate) {
+                    if (!arrayOfX.includes(2) && !arrayOfO.includes(2)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -48,7 +47,7 @@ function click(turn) {
                     }
                     break;
                 case 3:
-                    if (!arrayOfX.includes(3) && !arrayOfO.includes(3) && !popUpActivate) {
+                    if (!arrayOfX.includes(3) && !arrayOfO.includes(3)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -66,7 +65,7 @@ function click(turn) {
                     }
                     break;
                 case 4:
-                    if (!arrayOfX.includes(4) && !arrayOfO.includes(4) && !popUpActivate) {
+                    if (!arrayOfX.includes(4) && !arrayOfO.includes(4)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -84,7 +83,7 @@ function click(turn) {
                     }
                     break;
                 case 5:
-                    if (!arrayOfX.includes(5) && !arrayOfO.includes(5) && !popUpActivate) {
+                    if (!arrayOfX.includes(5) && !arrayOfO.includes(5)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -102,7 +101,7 @@ function click(turn) {
                     }
                     break;
                 case 6:
-                    if (!arrayOfX.includes(6) && !arrayOfO.includes(6) && !popUpActivate) {
+                    if (!arrayOfX.includes(6) && !arrayOfO.includes(6)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -120,7 +119,7 @@ function click(turn) {
                     }
                     break;
                 case 7:
-                    if (!arrayOfX.includes(7) && !arrayOfO.includes(7) && !popUpActivate) {
+                    if (!arrayOfX.includes(7) && !arrayOfO.includes(7)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -138,7 +137,7 @@ function click(turn) {
                     }
                     break;
                 case 8:
-                    if (!arrayOfX.includes(8) && !arrayOfO.includes(8) && !popUpActivate) {
+                    if (!arrayOfX.includes(8) && !arrayOfO.includes(8)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -156,7 +155,7 @@ function click(turn) {
                     }
                     break;
                 case 9:
-                    if (!arrayOfX.includes(9) && !arrayOfO.includes(9) && !popUpActivate) {
+                    if (!arrayOfX.includes(9) && !arrayOfO.includes(9)) {
                         if (turnCounter % 2) {
                             turn = "O";
                             turnText.innerHTML = "Turn of X";
@@ -191,19 +190,15 @@ function hoverBox() {
     var z = turnText.innerHTML;
     for (let i = 1; i <= allBoxs.length; i++) {
         allBoxs[i - 1].onmouseenter = function () {
-            if (!popUpActivate) {
-                if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
-                    allBoxs[i - 1].style.backgroundColor = "#3C4250"
-                    allBoxs[i - 1].innerHTML = z[z.length - 1];
-                }
+            if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
+                allBoxs[i - 1].style.backgroundColor = "#3C4250"
+                allBoxs[i - 1].innerHTML = z[z.length - 1];
             }
         }
-        if (!popUpActivate) {
-            allBoxs[i - 1].onmouseleave = function () {
-                allBoxs[i - 1].style.backgroundColor = "#78BEC5"
-                if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
-                    allBoxs[i - 1].innerHTML = "";
-                }
+        allBoxs[i - 1].onmouseleave = function () {
+            allBoxs[i - 1].style.backgroundColor = "#78BEC5"
+            if (!arrayOfO.includes(i) && !arrayOfX.includes(i)) {
+                allBoxs[i - 1].innerHTML = "";
             }
         }
 
@@ -213,6 +208,7 @@ function hoverBox() {
 setInterval(hoverBox, 1);
 
 function checkWin(playerArray) {
+
     var drawGame = false;
     const winCombinations = [
         [1, 2, 3], [1, 4, 7], [2, 5, 8], [3, 6, 9],
@@ -232,25 +228,25 @@ function checkWin(playerArray) {
 
         if (isWinner) {
             document.querySelector("#game").style.cursor = "default";
-            if (playerArray === arrayOfX && !popUpActivate) {
+            if (playerArray === arrayOfX) {
+                document.querySelector(".popUpSec").style.display = "flex"
                 document.querySelector(".popUp").style.display = "flex"
                 document.querySelector(".popUpText").innerHTML = "X Winner!";
-                popUpActivate = true;
             }
-            else if (playerArray === arrayOfO && !popUpActivate) {
+            else if (playerArray === arrayOfO) {
+                document.querySelector(".popUpSec").style.display = "flex"
                 document.querySelector(".popUp").style.display = "flex"
                 document.querySelector(".popUpText").innerHTML = "O Winner!";
-                popUpActivate = true;
             }
             drawGame = true;
             return;
         }
     }
 
-    if (turnCounter === 9 && !drawGame && !popUpActivate) {
+    if (turnCounter === 9 && !drawGame && playerArray !== arrayOfO && playerArray !== arrayOfX) {
+        document.querySelector(".popUpSec").style.display = "flex"
         document.querySelector(".popUp").style.display = "flex"
         document.querySelector(".popUpText").innerHTML = "You drew the game!"
-        popUpActivate = true;
         return;
     }
 }
@@ -270,9 +266,9 @@ function restart() {
 newGameBtn.addEventListener("click", function () {
     document.querySelector(".popUp").classList.add("popUpClose");
     setTimeout(function () {
-        popUpActivate = false;
         document.querySelector(".popUp").style.display = "none";
         document.querySelector(".popUp").classList.remove("popUpClose");
+        document.querySelector(".popUpSec").style.display = "none"
         restart();
     }, 800);
 })

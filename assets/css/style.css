@@ -116,6 +116,7 @@
     background-color: rgba(128, 128, 128, 0.9);
     position: absolute;
     top: 100px;
+    left: 500px;
     width: 500px;
     height: 300px;
     display: flex;
@@ -148,6 +149,16 @@
 
 .popUpClose {
     -webkit-animation: fadeOut 1s;
+}
+
+.popUpSec{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 918;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width:700px) {
