@@ -108,7 +108,7 @@
 }
 
 .box:hover {
-    background-color: #3C4250;
+    /* background-color: #3C4250; */
     transition: 0.2s;
 }
 
